@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P3-M06</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none';
+                document.getElementById('activity-4').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook-P3-M06</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+
+    <!-- Actividad 0: Revisión de Misión -->
+    <div id="activity-0" class="activity">
+        <div class="banner" onclick="toggleContent('mission_review')">
+            <div class="title">
+                <span>📝 Actividad 0: Revisión de Misión</span>
+                <span>⏰ Tiempo: N/A</span>
+            </div>
+            <div class="subtitle">Verificar materiales y recursos</div>
+            <div class="summary">Proyectar la diapositiva 1 "Materiales para la Misión". Verificar que todos los recursos y equipos estén listos.</div>
+        </div>
+        <div id="mission_review" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1: Proyectar la diapositiva 1 "Materiales para la Misión". Verificar que todos los recursos y equipos estén listos.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">N/A</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 1: Saludo y Ritual Gnius Club -->
+    <div id="activity-1" class="activity">
+        <div class="banner" onclick="toggleContent('gnius_club_greeting')">
+            <div class="title">
+                <span>👋 Actividad 1: Saludo y Ritual Gnius Club</span>
+                <span>⏰ Tiempo: 3 minutos</span>
+            </div>
+            <div class="subtitle">Saludo y bienvenida a los estudiantes</div>
+            <div class="summary">Proyectar las diapositivas 2 a 5, dar la bienvenida y explicar los objetivos del día.</div>
+        </div>
+        <div id="gnius_club_greeting" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1: Proyectar la diapositiva 2 "Saludo y Ritual Gnius Club".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"¡Hola, Genios! 🌟 Hoy comenzamos una nueva aventura en la narración interactiva. ¿Listos para crear historias que tomen vida en Scratch? ¡Es hora de empezar nuestra misión!"</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2: Proyectar la diapositiva 3 "Estado de Ánimo". Pedir a los estudiantes que expresen cómo se sienten usando gestos.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"¿Cómo se sienten hoy? Levanten la mano si están emocionados por crear historias interactivas, crucen los brazos si están un poco nerviosos."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3: Proyectar la diapositiva 4 "Ritual de Agradecimiento" y guiar el ritual.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Juntémonos en agradecimiento por lo que vamos a aprender hoy. ¡Gracias por asistir y por su entusiasmo, Genios!"</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 4: Proyectar la diapositiva 5 "Objetivos de la Misión" y explicar los objetivos del día.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Hoy, nuestro objetivo es aprender a usar transmisiones de mensajes en Scratch, explorar cómo utilizar condicionales con mensajes y practicar en equipo para crear historias interactivas. ¡Vamos allá!"</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 2: Innovación del Día -->
+    <div id="activity-2" class="activity">
+        <div class="banner" onclick="toggleContent('innovation_day')">
+            <div class="title">
+                <span>💡 Actividad 2: Innovación del Día</span>
+                <span>⏰ Tiempo: 3.5 minutos</span>
+            </div>
+            <div class="subtitle">Explorar cómo Pokémon GO utiliza la Realidad Aumentada</div>
+            <div class="summary">Proyectar las diapositivas 6 a 9, mostrar el video de Pokémon GO, y reflexionar sobre cómo se puede aplicar esta tecnología en Scratch.</div>
+        </div>
+        <div id="innovation_day" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1: Proyectar la diapositiva 6 "Innovación del Día". Introducir cómo Pokémon GO usa la Realidad Aumentada.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Hoy vamos a hablar de un juego muy especial: Pokémon GO. ¿Saben por qué es tan innovador? Nos permite interactuar con los personajes de una forma que nunca habíamos visto antes usando Realidad Aumentada."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2: Proyectar la diapositiva 7 "Video de Pokémon GO". Mostrar el video que explica cómo funciona la interacción en el juego usando Realidad Aumentada.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Pokémon GO usa Realidad Aumentada, lo que significa que mezcla cosas virtuales con el mundo real. Cuando miramos a través de la pantalla, vemos a los Pokémon como si estuvieran frente a nosotros, en nuestro patio o en el parque. ¡Veamos cómo funciona!"</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3: Proyectar la diapositiva 8 "Pokémon GO y Scratch". Explicar cómo Pokémon GO inspira el uso de interacciones en Scratch.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Esta innovación en la interacción hace que el juego sea más emocionante y divertido. En Scratch, podemos crear historias interactivas usando mensajes y condicionales para hacer que nuestros personajes reaccionen entre ellos, ¡como si también estuvieran interactuando en el mundo real!"</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 4: Proyectar la diapositiva 9 "Reflexión sobre Scratch". Pedir a los estudiantes que piensen cómo pueden crear sus propias interacciones en Scratch.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"¿Cómo creen que los mensajes y condicionales en Scratch podrían ayudar a que sus personajes interactúen como lo hacen los Pokémon en Pokémon GO? ¿Qué tipo de historias interactivas podrían crear?"</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 3: Brain Gym -->
+    <div id="activity-3" class="activity">
+        <div class="banner" onclick="toggleContent('brain_gym')">
+            <div class="title">
+                <span>🧠 Actividad 3: Brain Gym</span>
+                <span>⏰ Tiempo: 10 minutos</span>
+            </div>
+            <div class="subtitle">Explorar cómo los mensajes y condicionales se utilizan en Scratch</div>
+            <div class="summary">Proyectar las diapositivas 10 a 17 para explicar los conceptos de mensajes y condicionales en Scratch, con ejemplos prácticos.</div>
+        </div>
+        <div id="brain_gym" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1: Proyectar la diapositiva 10 "Brain Gym: Transmisión de Mensajes".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"¡Genios! Vamos a explorar cómo los objetos en Scratch se comunican entre sí con mensajes. Esto nos permitirá hacer que nuestros personajes interactúen. Presten mucha atención porque al final les haré una pregunta sorpresa. ¡El que responda correctamente ganará un Mon-e!"</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2: Proyectar la diapositiva 11 "Mensajes entre Objetos".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"A veces, necesitamos que los objetos del juego se comuniquen entre sí. Para eso, usamos los mensajes. Un objeto puede enviar un mensaje a otros para que realicen una acción. Esto nos ayuda a que las acciones se realicen en el momento correcto, como si fuera una conversación entre personajes."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3: Proyectar la diapositiva 12 "Sincronización en Scratch".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"En Scratch, podemos sincronizar acciones de dos formas: esperando o enviando mensajes. Con los mensajes, un objeto puede avisar a otros que es momento de actuar. Esto nos permite estructurar mejor nuestro programa y controlar el orden de las acciones."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 4: Proyectar la diapositiva 13 "Bloques de Mensajes".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Podemos enviar un mensaje usando el bloque 'enviar mensaje', que envía un mensaje y permite que el código siga ejecutándose. También está el bloque 'enviar mensaje y esperar', que pausa el código hasta que el mensaje sea recibido y procesado por otro objeto."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 5: Proyectar la diapositiva 14 "Ejemplo Práctico: Mensajes".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Miren este ejemplo: cuando el Objeto 1 recibe la señal de inicio (bandera verde), envía un mensaje al Objeto 2 para que actúe. Mientras tanto, el Objeto 1 espera. Una vez que el Objeto 2 recibe el mensaje, realiza una acción como cambiar de tamaño o decir algo. Así es como los objetos se comunican entre sí."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 6: Proyectar la diapositiva 15 "Mensajes y Condicionales".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Podemos hacer que los personajes tomen acciones usando condicionales."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 7: Proyectar la diapositiva 16 "Ejemplo: Mensajes con Condicionales".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"En este ejemplo hacemos que el gato mande mensaje si y sólo si está tocando al pato. Si no lo está tocando, estará caminando 30 pasos. Esto permite que los personajes reaccionen de diferentes formas en la historia."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 8: Proyectar la diapositiva 17 "Cierre del Brain Gym".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"¡Genios, qué gran trabajo! Hemos aprendido cómo usar los mensajes y condicionales para que nuestros personajes interactúen. Recuerden, al final de la clase les haré una pregunta sorpresa, y quien responda correctamente ganará un Mon-e. ¡Presten mucha atención!"</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 4: State Change -->
+    <div id="activity-4" class="activity">
+        <div class="banner" onclick="toggleContent('state_change')">
+            <div class="title">
+                <span>🧘 Actividad 4: State Change</span>
+                <span>⏰ Tiempo: 5 minutos</span>
+            </div>
+            <div class="subtitle">Cambio de estado para activar mente y cuerpo</div>
+            <div class="summary">Realizar una breve actividad física para mantener la mente y el cuerpo activos antes de continuar con la misión.</div>
+        </div>
+        <div id="state_change" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1: Proyectar la diapositiva 18 "Portada: State Change".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"¡Genios! Es momento de movernos un poco y activar nuestras mentes y cuerpos. ¡Vamos a cambiar de estado con una divertida actividad!"</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2: Proyectar la diapositiva 19 "Instrucciones: State Change".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"Vamos a hacer una activación rápida para liberar energía y despertar nuestra creatividad. Vamos a saltar 5 veces en nuestro lugar, y con cada salto, tienen que decir una palabra divertida relacionada con las historias que hemos creado."</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3: Guiar a los estudiantes para que realicen la actividad juntos.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"¡Vamos todos! ¡A la cuenta de tres, todos saltamos y decimos una palabra! Uno... dos... tres... ¡salta! ¿Cuál es tu palabra divertida?"</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 4: Felicitar a los estudiantes por su participación y conectar con el contenido de la misión.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">"¡Excelente, Genios! Ahora que hemos activado nuestras mentes y cuerpos, estamos listos para continuar con la misión y crear increíbles historias interactivas. ¡Sigan con ese mismo entusiasmo!"</div>
+            </div>
+        </div>
+    </div>
+<!-- Actividad 5: Team Gnius -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('team_gnius')">
+        <div class="title">
+            <span>🤝 Actividad 5: Team Gnius</span>
+            <span>⏰ Tiempo: 2.5 minutos</span>
+        </div>
+        <div class="subtitle">Trabajo en equipo para crear historias interactivas</div>
+        <div class="summary">Formación de equipos y colaboración para trabajar en la misión de narración interactiva.</div>
+    </div>
+    <div id="team_gnius" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1: Proyectar la diapositiva 20 "Team Gnius".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Es hora de formar equipos, Genios! Vamos a trabajar juntos en nuestra misión de narración interactiva."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2: Proyectar la diapositiva 21 "Temporizador: Formación de Parejas".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Encuentren a su compañero para esta misión. ¡Tienen 30 segundos para formar sus equipos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3: Proyectar la diapositiva 22 "Recoger Magic Tablets".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Un integrante de cada equipo pasará al frente para recoger una Magic Tablet. Tienen 1 minuto para hacerlo. ¡Adelante!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 6: Challenge -->
+<div id="activity-6" class="activity">
+    <div class="banner" onclick="toggleContent('challenge')">
+        <div class="title">
+            <span>🏆 Actividad 6: Challenge</span>
+            <span>⏰ Tiempo: 20 minutos</span>
+        </div>
+        <div class="subtitle">Crear una interacción entre personajes sobre tenis</div>
+        <div class="summary">Los estudiantes trabajan en parejas para crear una interacción entre personajes y describen los bloques de Scratch necesarios.</div>
+    </div>
+    <div id="challenge" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1: Proyectar la diapositiva 23 "Portada: Challenge".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Genios! Es momento del Challenge. Hoy trabajaremos en parejas para crear una interacción entre dos personajes hablando sobre tenis. También van a describir los bloques de Scratch que usarían para hacer que estos personajes hablen entre sí."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2: Proyectar la diapositiva 24 "Instrucciones del Challenge".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"En este reto, escribirán una interacción entre dos personajes hablando sobre tenis en sus Magic Tablets. Además, van a describir los bloques de Scratch que usarían para hacer que estos personajes se comuniquen, como mensajes y condicionales."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3: Proyectar la diapositiva 25 "Temporizador: 15 Minutos".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora, escriban el diálogo entre sus personajes y piensen qué bloques de Scratch utilizarían para que estos personajes interactúen. Pueden usar bloques de mensajes y condicionales para hacer que sus personajes reaccionen. ¡Tienen 15 minutos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4: Revisar el trabajo entre ellos y dar retroalimentación.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Cuando terminen, lean el diálogo y revisen la descripción de los bloques de Scratch en voz baja con su compañero. ¿Todo tiene sentido? Si creen que algo puede mejorar, háganlo juntos."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5: Felicitar a los estudiantes.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Gran trabajo, Genios! Han creado una interacción entre sus personajes y han descrito los bloques que usarían en Scratch. ¡Este es un paso importante para crear historias interactivas más complejas! ¡Sigan así!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 7: Easter Egg -->
+<div id="activity-7" class="activity">
+    <div class="banner" onclick="toggleContent('easter_egg')">
+        <div class="title">
+            <span>🥚 Actividad 7: Easter Egg</span>
+            <span>⏰ Tiempo: 2 minutos</span>
+        </div>
+        <div class="subtitle">Pregunta sorpresa sobre lo aprendido</div>
+        <div class="summary">Los estudiantes responden una pregunta sorpresa sobre lo aprendido en la clase para ganar un Mon-e.</div>
+    </div>
+    <div id="easter_egg" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1: Proyectar la diapositiva 26 "Easter Egg: Pregunta Sorpresa".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Es hora del Easter Egg, Genios! Les haré una pregunta sorpresa sobre lo que hemos aprendido hoy. El que responda correctamente ganará un Mon-e. ¡Presten mucha atención!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2: Proyectar la diapositiva 27 "Pregunta del Easter Egg".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"La pregunta es: ¿Cuáles son las dos formas en las que podemos sincronizar acciones en Scratch? Levanten la mano si saben la respuesta. ¡Voy a seleccionar a tres estudiantes para responder!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3: Guiar a los estudiantes seleccionados a dar la respuesta.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Voy a seleccionar a tres estudiantes. Vengan uno a uno a decirme la respuesta al oído. ¡A ver quién acierta!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4: Proyectar la diapositiva 28 "Respuesta Correcta del Easter Egg".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Correcto! Las dos formas en las que podemos sincronizar acciones son: esperando o enviando mensajes. ¡Felicidades a los ganadores, se llevan un Mon-e!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 8: Honor de Dojo -->
+<div id="activity-8" class="activity">
+    <div class="banner" onclick="toggleContent('honor_dojo')">
+        <div class="title">
+            <span>🏅 Actividad 8: Honor de Dojo</span>
+            <span>⏰ Tiempo: 5 minutos</span>
+        </div>
+        <div class="subtitle">Reflexión y cierre de la clase</div>
+        <div class="summary">Reflexión sobre lo aprendido, celebración de logros y organización del espacio de trabajo.</div>
+    </div>
+    <div id="honor_dojo" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1: Proyectar la diapositiva 29 "Reflexión y Feedback".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Genios, hicieron un trabajo excelente! Antes de terminar, tómense un momento para pensar: ¿qué fue lo que más les gustó de crear interacciones con Scratch hoy? Levanten la mano si quieren compartir."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2: Felicitar al grupo por su esfuerzo y creatividad.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy aprendimos mucho sobre cómo crear historias interactivas. ¡Quiero felicitar a todos los equipos por su esfuerzo y creatividad! Están en camino de convertirse en grandes narradores interactivos."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3: Proyectar la diapositiva 30 "Honor de Dojo - Ordenando".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Antes de terminar, recordemos que ser Genios también significa cuidar nuestro entorno. Vamos a recoger y organizar todo lo que usamos hoy para que esté listo para la próxima misión."</div>
+        </div>
+    </div>
+</div>
+</div> <!-- Cierre del container -->
+
+    <!-- Scripts adicionales si es necesario -->
+    <script>
+        // Agregar scripts adicionales aquí si es necesario
+    </script>
+
+    </body>
+    </html>
